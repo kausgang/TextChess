@@ -15,7 +15,7 @@ $(document).ready(function(){
     
 
     var board1 = Chessboard('board1', 'start')
-    // var board2 = Chessboard('board2', 'clear')
+    var board2 = Chessboard('board2', 'clear')
 
     var move_counter = 0;
     var play_as_black = false;
