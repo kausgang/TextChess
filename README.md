@@ -3,5 +3,4 @@ Text based chess games to improve your chess visualization and notation
 
 
 
-
-![ScreenShot](https://user-images.githubusercontent.com/33816465/85240021-915ecf00-b404-11ea-8e74-ca43d6abe18c.png)
+![Textchess](https://user-images.githubusercontent.com/33816465/104214086-088d9c00-5405-11eb-9faa-3dd1a671c7d8.gif)
