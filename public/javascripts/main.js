@@ -20,6 +20,7 @@ $(document).ready(function(){
     var move_counter = 0;
     var play_as_black = false;
     var movelist = [];
+    var tabindex = 0
 
 
     var engine_level = $("#engine_level").val()
@@ -60,9 +61,18 @@ $(document).ready(function(){
     // Export PGN
     $("#export_pgn").click(function(){
 
+        // remove commas from the array for PGN import
+
+        //save the current game in a placeholder
+        movelist1=movelist
+        movelist=movelist.join(' ')
+        $("#export_pgn").attr("data-clipboard-text",movelist)
         new ClipboardJS('#export_pgn');
         alert("PGN copied to clipboard")
-        // console.log(movelist)
+
+        // restore the movelist for future export
+        movelist=movelist1
+        
     })
 
         // SHOW/HIDE board
@@ -168,23 +178,43 @@ $(document).ready(function(){
                     // $("#PGNTable").append('<tr><td> '+ (++move_counter)+' </td>'+'<td> '+move+' </td></tr>');
                     if(play_as_black == true){
 
-                        // $("#PGNTable").append('<td></td><td></td><td>'+move+'</td>');
-                        $("#PGNTable").append('<td></td><td></td>'
-                        +' .</td>'+'<td id="Move" data-FEN="'+ FEN +'" >'
-                        +'<a href="#">'
-                        +move+'</td>');
+                        
+                        // $("#PGNTable").append('<td></td><td></td>'
+                        // +' .</td>'+'<td id="Move" data-FEN="'+ FEN +'" >'
+                        // +'<a href="#">'
+                        // +move+'</td>');
+
+                        // $("#PGNTable").append('<td></td><td></td>'
+                        // +' .</td>'+'<td id="'+(++tabindex)+' class="Move" tabindex="'+(tabindex)+'" data-FEN="'+ FEN +'" >'
+                        // +'<a href="#">'
+                        // +move+'</td>');
+
+
+                        
+                        var ex = '#Move_'+move_counter
+                            $(ex).append('<td id="'+(++tabindex)+' class="Move" tabindex="'+(tabindex)+'" data-FEN="'+ FEN +'" >'
+                            +'<a href="#">'
+                            +move+'</td>');
                         
                         // push move in movelist
                         movelist.push(" "+move)
                     }
                     else
                     {
-                        // $("#PGNTable").append('<tr><td> '+ (++move_counter)+' .</td>'+'<td id="Move"> <a href=# data-FEN="'+ FEN +'" >'+move+' </td></tr>');
-                        $("#PGNTable").append('<tr><td> '+ (++move_counter)
-                            +' .</td>'+'<td id="Move" data-FEN="'+ FEN +'" >'
-                            +'<a href="#">'
-                            +move+' </td></tr>');
                         
+                        // $("#PGNTable").append('<tr><td> '+ (++move_counter)
+                        //     +' .</td>'+'<td id="Move" data-FEN="'+ FEN +'" >'
+                        //     +'<a href="#">'
+                        //     +move+' </td></tr>');
+
+                        $("#PGNTable").append('<tr id="Move_'+(move_counter+1)+'"><td> '+ (++move_counter)
+                            +' .</td>'+'<td id="'+(++tabindex)+' class="Move" tabindex="'+(tabindex)+'" data-FEN="'+ FEN 
+                            +'" >'
+                            +'<a href="#">'
+                            +move
+                            +' </td></tr>');
+                       
+
                         // push move in movelist
                         movelist.push(move_counter+". "+move)
                     }
@@ -199,7 +229,7 @@ $(document).ready(function(){
 
 
                     // save the PGN into export pgn button
-                    $("#export_pgn").attr("data-clipboard-text",movelist)
+                    // $("#export_pgn").attr("data-clipboard-text",movelist)
 
                     // Scroll the PGN table to the end move
                     var scrollBottom = 0;
@@ -244,11 +274,42 @@ $(document).ready(function(){
                         // $("#PGNTable").append('<td></td><td></td><td>'+engine_move+'</td>');
                         if(play_as_black == true){
 
-                            // $("#PGNTable").append('<tr><td> '+ (++move_counter)+' .</td>'+'<td>'+engine_move+' </td></tr>');
-                            $("#PGNTable").append('<tr><td> '+ (++move_counter)
-                            +' .</td>'+'<td id="Move" data-FEN="'+ FEN +'" >'
+                            
+                            // $("#PGNTable").append('<tr><td> '+ (++move_counter)
+                            // +' .</td>'+'<td id="Move" data-FEN="'+ FEN +'" >'
+                            // +'<a href="#">'
+                            // +engine_move
+                            // +'tabindex='+move_counter
+                            // +' </td></tr>');
+
+                            // $("#PGNTable").append('<tr><td> '+ (++move_counter)
+                            // +' .</td>'+'<td id="'+(++tabindex)+' class="Move" tabindex="'+(tabindex)+'" data-FEN="'+ FEN +'" >'
+                            // +'<a href="#">'
+                            // +engine_move
+                            // +'tabindex='+move_counter
+                            // +' </td></tr>');
+
+                            $("#PGNTable").append('<tr id="Move_'+(move_counter+1)+'"><td> '+ (++move_counter)
+                            +' .</td>'+'<td id="'+(++tabindex)+' class="Move" tabindex="'+(tabindex)+'" data-FEN="'+ FEN 
+                            +'" >'
                             +'<a href="#">'
-                            +engine_move+' </td></tr>');
+                            +engine_move
+                            +' </td></tr>');
+
+                            // $("#PGNTable").append('<tr id="Move_'+(move_counter+1)+'"><td> '+ (++move_counter)
+                            // +' .</td>'+'<td id="'+(++tabindex)+' class="Move" tabindex="'+(tabindex)+'" data-FEN="'+ FEN 
+                            // +'" >'
+                            // +'<a href="#">'
+                            // +move
+                            // +' </td></tr>');
+
+                            // var ex = '#Move_'+move_counter
+                            // $(ex).append('<tr><td> '+ (++move_counter)
+                            // +' .</td>'+'<td id="'+(++tabindex)+' class="Move" tabindex="'+(tabindex)+'" data-FEN="'+ FEN +'" >'
+                            // +'<a href="#">'
+                            // +engine_move
+                            // +'tabindex='+move_counter
+                            // +' </td></tr>');
 
 
                             // push move in movelist
@@ -257,12 +318,23 @@ $(document).ready(function(){
                         }
                         else{
 
-                            // $("#PGNTable").append('<td></td><td></td><td>'+engine_move+'</td>');
-                            $("#PGNTable").append('<td></td><td></td>'
-                            +' .</td>'+'<td id="Move" data-FEN="'+ FEN +'" >'
+                            
+
+                            
+
+                            // $("#PGNTable").append('<td></td><td></td>'
+                            // +' .</td>'+'<td id="Move" data-FEN="'+ FEN +'" >'
+                            // +'<a href="#">'
+                            // +engine_move+'</td>'); 
+
+                            var ex = '#Move_'+move_counter
+                            $(ex).append('<td id="'+(++tabindex)+' class="Move" tabindex="'+(tabindex)+'" data-FEN="'+ FEN +'" >'
                             +'<a href="#">'
                             +engine_move+'</td>'); 
 
+
+                            // // adjust move counter
+                            // move_counter--
                             // push move in movelist
                             movelist.push(" "+engine_move)
                         }
@@ -277,7 +349,7 @@ $(document).ready(function(){
                         $("#copy_fen").attr("data-clipboard-text",FEN)
 
                         // save the PGN into export pgn button
-                        $("#export_pgn").attr("data-clipboard-text",movelist)
+                        // $("#export_pgn").attr("data-clipboard-text",movelist)
                         
 
                         // Scroll the PGN table to the end move
@@ -357,13 +429,18 @@ $(document).ready(function(){
             console.log(FEN)
 
             //update the taable with the engine move
-            // $("#PGNTable").find("tr").last().append('<td>'+engine_move+'</td>');
-            // $("#PGNTable").append('<tr><td> '+ (++move_counter)+' </td>'+'<td>'+engine_move+' </td></tr>');
-            $("#PGNTable").append('<tr><td> '+ (++move_counter)
-                            +' .</td>'+'<td id="Move" data-FEN="'+ FEN +'" >'
-                            +'<a href="#">'
-                            +engine_move+' </td></tr>');
 
+            
+            $("#PGNTable").append('<tr id="Move_'+(move_counter+1)+'"><td> '+ (++move_counter)
+                +' .</td>'+'<td id="'+(++tabindex)+' class="Move" tabindex="'+(tabindex)+'" data-FEN="'+ FEN +'" >'
+                +'<a href="#">'
+                +engine_move+' </td></tr>');
+
+
+ 
+               
+
+                            
             // push move in movelist
             movelist.push(move_counter+". "+engine_move)
 
@@ -376,7 +453,7 @@ $(document).ready(function(){
             $("#copy_fen").attr("data-clipboard-text",FEN)
             
             // save the PGN into export pgn button
-            $("#export_pgn").attr("data-clipboard-text",movelist)
+            // $("#export_pgn").attr("data-clipboard-text",movelist)
             
              // // scroll the pgn table to the end
             var scrollBottom = 0;
@@ -430,12 +507,24 @@ $(document).ready(function(){
             console.log(FEN)
 
             //update the taable with the engine move
-            // $("#PGNTable").find("tr").last().append('<td>'+engine_move+'</td>');
-            // $("#PGNTable").append('<tr><td> '+ (++move_counter)+' </td>'+'<td>'+engine_move+' </td></tr>');
-            $("#PGNTable").append('<td></td><td></td>'
-                            +' .</td>'+'<td id="Move" data-FEN="'+ FEN +'" >'
-                            +'<a href="#">'
-                            +engine_move+'</td>'); 
+
+            // $("#PGNTable").append('<td></td><td></td>'
+            //                 +' .</td>'+'<td id="'+(++tabindex)+' class="Move" tabindex="'+(tabindex)+'" data-FEN="'+ FEN +'" >'
+            //                 +'<a href="#">'
+            //                 +engine_move+'</td>'); 
+
+
+            var ex = '#Move_'+move_counter
+            $(ex).append('<td id="'+(++tabindex)+' class="Move" tabindex="'+(tabindex)+'" data-FEN="'+ FEN +'" >'
+            +'<a href="#">'
+            +engine_move+'</td>');
+
+                            // var ex = '#Move_'+move_counter
+                            // $(ex).append('<td id="'+(++tabindex)+' class="Move" tabindex="'+(tabindex)+'" data-FEN="'+ FEN +'" >'
+                            // +'<a href="#">'
+                            // +engine_move+'</td>'); 
+
+
 
             // push move in movelist
             movelist.push(" "+engine_move)
@@ -448,7 +537,7 @@ $(document).ready(function(){
             $("#copy_fen").attr("data-clipboard-text",FEN)
 
             // save the PGN into export pgn button
-            $("#export_pgn").attr("data-clipboard-text",movelist)
+            // $("#export_pgn").attr("data-clipboard-text",movelist)
             
              // // scroll the pgn table to the end
             var scrollBottom = 0;

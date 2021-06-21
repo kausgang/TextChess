@@ -88,12 +88,12 @@ input:focus {
 }
 
 
-#Move{
+.Move{
   background-color: #f2f2f2;
   padding: 10px;
 }
 
-#Move :hover {background-color: #ddd;}
+.Move :hover {background-color: #ddd;}
 
 /* #PGNTable{
 

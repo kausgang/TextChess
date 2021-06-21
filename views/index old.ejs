@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="/javascripts/main.js"></script>
+
+    <!-- chessboard -js -->
+    <!-- https://chessboardjs.com/index.html -->
+
+    <link rel="stylesheet"
+      href="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.css"
+      integrity="sha384-q94+BZtLrkL1/ohfjR8c6L+A6qzNH9R2hBLwyoAfu3i/WCvQjzL2RQJ3uNHDISdU"
+      crossorigin="anonymous">
+
+    <script src="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.js"
+        integrity="sha384-8Vi8VHwn3vjQ9eUHUxex3JSN/NFqUg3QbPyX8kWyb93+8AC/pPWTzj+nHtbC5bxD"
+        crossorigin="anonymous"></script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script>
+
+<!-- <script>
+  function ShowBoard(move) {
+          var FEN = move.getAttribute("data-FEN");
+          // alert("The " + animal.innerHTML + " is a " + animalType + ".");
+          // board1.position(FEN)
+          showboard(FEN)
+        }
+
+</script> -->
+
+       
+
+
+  </head>
+  <body>
+ 
+    
+
+
+    <div id="main" class="grid-container">
+
+
+      <div id="left">
+          
+          <div id="pgn">
+            <table id="PGNTable">
+                  
+            </table>
+  
+          </div>
+          <p></p>
+          <div id="input_holder">
+  
+              <label id="enter_move">Enter Move - </label>
+              <input type="text" id="input">
+              <!-- <textarea id="input"  rows="2" cols="40"></textarea> -->
+  
+          </div>
+          <p></p>
+          <div id="game_buttons">
+  
+              <!-- <button type="button" id="undo"> Undo</button>
+              <button type="button" id="resign"> Resign</button> -->
+
+              <button type="button" class="button" id="play_as_black">You Play As Black</button>
+              <button type="button" class="button" id="play_as_white">You Play As White</button>
+
+              <button type="button" class="button" id="copy_fen">Copy FEN</button>
+              <button type="button" class="button" id="export_pgn">Export PGN</button>
+             
+  
+          </div>
+
+      </div>
+
+      <!-- <div id="middle">
+
+        <div id="enginelocation_playas_level">
+  
+          <label>Engine Location</label>
+          <input type="text" id="engine_location"> -->
+
+          <!-- <p></p>
+          
+          <label>Engine Level</label>
+          <select name="engine_level" id="engine_level">
+            <option value="20">20</option>
+            <option value="saab">Saab</option>
+            <option value="mercedes">Mercedes</option>
+            <option value="audi">Audi</option>
+          </select>
+
+          <p></p> -->
+          
+          <!-- <label>Play As</label>
+          <select name="play_as" id="play_as">
+            <option value="white">White</option>
+            <option value="black">Black</option>
+          </select>
+
+      </div>
+
+      </div> -->
+
+
+      <div id="right">
+          
+          <div id="show-hide_button_holder">
+  
+              <button type="button" class="button" id="show-hide_button">Show Board</button>
+              <button type="button" class="button" id="empty_board">Show Empty Board</button>
+
+              
+             
+              <select name="engine_level" id="engine_level">
+                <option value="1">Engine Level 1</option>
+                <option value="2">Engine Level 2</option>
+                <option value="3">Engine Level 3</option>
+                <option value="4">Engine Level 4</option>
+                <option value="5" selected>Engine Level 5</option>
+              </select>
+  
+          </div>
+
+          <p></p>
+
+          <!-- CHESSBOARD -->
+          <div id="board1" style="width: 450px"></div>
+
+          <div id="board2" style="width: 450px"></div>
+
+          
+          
+
+
+      </div>
+  
+  </div>
+
+
+
+  </body>
+</html>

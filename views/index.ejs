@@ -2,14 +2,22 @@
 <html>
   <head>
     <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <!-- <link rel='stylesheet' href='/stylesheets/style.css' /> -->
+    
+    <!-- BOOTSTRAP CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
 
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="/javascripts/main.js"></script>
+    
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 
-    <!-- chessboard -js -->
-    <!-- https://chessboardjs.com/index.html -->
+
+
+    <!-- FONTAWESOME -->
+    <!-- <script src="https://use.fontawesome.com/914b5e8fc5.js"></script> -->
 
     <link rel="stylesheet"
       href="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.css"
@@ -23,17 +31,58 @@
 
     <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script>
 
-<!-- <script>
-  function ShowBoard(move) {
-          var FEN = move.getAttribute("data-FEN");
-          // alert("The " + animal.innerHTML + " is a " + animalType + ".");
-          // board1.position(FEN)
-          showboard(FEN)
-        }
 
-</script> -->
 
        
+
+    <style>
+    
+
+      html,body {
+        height: 100%;
+      }
+
+      #container{
+        height: 100%;
+      }
+      #left{
+        height: 100%
+      }
+
+    
+
+      #pgn{
+          height: 70%;
+          /* min-height: 100%; */
+          /* display: block; */
+          overflow: auto;
+      }
+      /* #PGNTable{
+
+        overflow: auto;
+   
+      } */
+
+     
+
+      #container_row { 
+        /* width: 100%; */
+        height: 100%;
+        /* min-height: 100%; */
+        /* background: red; */
+        /* display: block; */
+        }
+
+      /* .fill { 
+        min-height: 100%;
+        height: 100%;
+      } */
+
+    </style>
+
+
+
+ 
 
 
   </head>
@@ -42,106 +91,129 @@
     
 
 
-    <div id="main" class="grid-container">
 
 
-      <div id="left">
+      <div id="container" class="container-fluid">
+
+        <div class="row" id="container_row" >
+
           
-          <div id="pgn">
-            <table id="PGNTable">
-                  
-            </table>
-  
+          
+
+          <div id="left" class="col-sm-4 col-md-4 col-lg-4 col-xl-4" >
+            
+            <!-- for pgn -->
+            <div id="pgn" class="p-4 mb-4">
+
+            
+              <table id="PGNTable" class="table table-bordered h5">
+                
+                
+              </table>
+
+            </div>
+              <!-- for input holder -->
+              <!-- <div class="row align-item-end"> -->
+
+                
+                <!-- <div class="col align-item-end" id="input-holder"> -->
+
+                  <div class="input-group mb-3 ">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">
+                          <i class="fas fa-chess-king fa-2x"></i>
+                        </span>
+                    </div>
+                    <input class="form-control" id="input" type="text" placeholder="Enter Move">
+                  </div>
+
+                  <!-- INPUT HOLDER -->
+                  <div>
+                    <!-- <div class="p-4  item-hl">Flex Item Left</div> -->
+                    <button class="btn btn-dark" id="play_as_black" type="button">You Play as Black</button>
+                    <button class="btn btn-outline-dark" id="play_as_white" type="button">You Play as White</button>
+                    <button class="btn btn-link" id="copy_fen" type="button">Copy FEN</button>
+                    <button class="btn btn-link" id="export_pgn" type="button">Export PGN</button>
+                  </div>
+
+                <!-- </div> -->
+
+
+              <!-- </div> -->
+
           </div>
-          <p></p>
-          <div id="input_holder">
-  
-              <label id="enter_move">Enter Move - </label>
-              <input type="text" id="input">
-              <!-- <textarea id="input"  rows="2" cols="40"></textarea> -->
-  
-          </div>
-          <p></p>
-          <div id="game_buttons">
-  
-              <!-- <button type="button" id="undo"> Undo</button>
-              <button type="button" id="resign"> Resign</button> -->
 
-              <button type="button" class="button" id="play_as_black">You Play As Black</button>
-              <button type="button" class="button" id="play_as_white">You Play As White</button>
-
-              <button type="button" class="button" id="copy_fen">Copy FEN</button>
-              <button type="button" class="button" id="export_pgn">Export PGN</button>
-             
-  
-          </div>
-
-      </div>
-
-      <!-- <div id="middle">
-
-        <div id="enginelocation_playas_level">
-  
-          <label>Engine Location</label>
-          <input type="text" id="engine_location"> -->
-
-          <!-- <p></p>
           
-          <label>Engine Level</label>
-          <select name="engine_level" id="engine_level">
-            <option value="20">20</option>
-            <option value="saab">Saab</option>
-            <option value="mercedes">Mercedes</option>
-            <option value="audi">Audi</option>
-          </select>
-
-          <p></p> -->
-          
-          <!-- <label>Play As</label>
-          <select name="play_as" id="play_as">
-            <option value="white">White</option>
-            <option value="black">Black</option>
-          </select>
-
-      </div>
-
-      </div> -->
-
-
-      <div id="right">
-          
-          <div id="show-hide_button_holder">
-  
-              <button type="button" class="button" id="show-hide_button">Show Board</button>
-              <button type="button" class="button" id="empty_board">Show Empty Board</button>
+          <div id="right" class="col-sm-8 col-md-8 col-lg-8 col-xl-8">
+            
+         
+            <div class="d-flex justify-content-center">
+                
+                
 
               
-             
-              <select name="engine_level" id="engine_level">
-                <option value="1">Engine Level 1</option>
-                <option value="2">Engine Level 2</option>
-                <option value="3">Engine Level 3</option>
-                <option value="4">Engine Level 4</option>
-                <option value="5" selected>Engine Level 5</option>
-              </select>
-  
+              <!-- game buttons -->
+              <!-- <div class="p-4 mt-4 mb-4 item-hl">Flex Item Right</div> -->
+              <div class="p-3 mt-3">
+                <button type="button" class="btn btn-secondary mb-1" id="show-hide_button">Show Board</button>
+                <button type="button" class="btn btn-secondary mb-1" id="empty_board">Empty Board</button>
+
+                <select name="engine_level" id="engine_level" class="form-select">
+                  <option value="1" selected>Engine Level 1</option>
+                  <option value="2">Engine Level 2</option>
+                  <option value="3">Engine Level 3</option>
+                  <option value="4">Engine Level 4</option>
+                  <!-- <option value="5" selected>Engine Level 5</option> -->
+                  <option value="5">Engine Level 5</option>
+                  <!-- <option value="6">Engine Level 6</option>
+                  <option value="7">Engine Level 7</option>
+                  <option value="8">Engine Level 8</option>
+                  <option value="9">Engine Level 9</option> -->
+
+                </select>
+
+              </div>
+            
+
+            </div>
+
+
+            <div id="board_holder" class="d-lg-flex justify-content-center">
+                
+              <div id="board1" style="width: 55%"></div>
+              <div id="board2" style="width: 55%"></div>
+              
+            </div>
+
+            
+
           </div>
 
-          <p></p>
+        </div>
+        
 
-          <!-- CHESSBOARD -->
-          <div id="board1" style="width: 450px"></div>
 
-          <div id="board2" style="width: 450px"></div>
 
-          
-          
+    
 
+     
 
       </div>
-  
-  </div>
 
+
+
+
+
+      
+  <!-- BOOTSTRAP JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+
+  <!-- <script>
+    var board1 = Chessboard('board1', 'start')
+  </script> -->
+
+
+  <script src="https://kit.fontawesome.com/7ebd2faa22.js" crossorigin="anonymous"></script>
 
 
   </body>
