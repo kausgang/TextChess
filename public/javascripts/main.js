@@ -142,6 +142,8 @@ $(document).ready(function(){
             
             
         
+            move = explain(move)
+
             
         
             // // scroll the pgn table to the end
@@ -572,3 +574,169 @@ $(document).ready(function(){
 
 
 });
+
+
+
+function explain(move){
+
+    
+
+    var wordCount = move. match(/(\w+)/g). length;
+    // \w+ between one and unlimited word characters.
+    // /g greedy - don't stop after the first match.
+
+    
+
+    if (wordCount == 1){
+
+        if (move == 'castle' || move == 'castles')
+            return 'O-O'
+        else
+            return move
+    }
+        
+
+    if (wordCount == 2) 
+    {
+        
+
+        if(move == 'O-O')
+            return move
+    
+        words = move.split(' ')
+    
+        switch(words[0])
+        {
+            case 'rook':
+                first = 'R'
+                break
+            case 'night':
+                first = 'N'
+                break
+            case 'bishop':
+                first = 'B'
+                break
+            case 'queen':
+                first = 'Q'
+                break
+            case 'king':
+                first = 'K'
+                break
+            case 'Rook':
+                first = 'R'
+                break
+            case 'Night':
+                first = 'N'
+                break
+            case 'Bishop':
+                first = 'B'
+                break
+            case 'Queen':
+                first = 'Q'
+                break
+            case 'King':
+                first = 'K'
+                    break
+            default:
+                first = words[0]
+        }        
+       
+        
+       
+       return first + words[1]        
+           
+    }
+    
+
+    else if(wordCount == 3)
+    {
+
+        if(move == 'O-O-O')
+        return move
+
+        words = move.split(' ')
+        
+        if(words[1] == 'takes')
+            mid = 'x'
+
+
+        switch(words[0])
+        {
+            case 'rook':
+                first = 'R'
+                break
+            case 'night':
+                first = 'N'
+                break
+            case 'bishop':
+                first = 'B'
+                break
+            case 'queen':
+                first = 'Q'
+                break
+            case 'king':
+                first = 'K'
+                break
+            case 'Rook':
+                first = 'R'
+                break
+            case 'Night':
+                first = 'N'
+                break
+            case 'Bishop':
+                first = 'B'
+                break
+            case 'Queen':
+                first = 'Q'
+                break
+            case 'King':
+                first = 'K'
+                break
+            default:
+                first = words[0]
+        }        
+        return first + mid + words[2]        
+    }
+    
+    else if (wordCount == 4)
+    {
+
+
+        words = move.split(' ')
+        
+        if(words[2] == 'takes')
+            third = 'x'
+
+
+        switch(words[0])
+        {
+            case 'rook':
+                first = 'R'
+                break
+            case 'night':
+                first = 'N'
+                break
+            case 'bishop':
+                first = 'B'
+                break
+            case 'queen':
+                first = 'Q'
+                break
+            case 'king':
+                first = 'K'
+                break
+            default:
+                first = words[0]
+
+        }
+        
+
+
+        return first + word[1]+ third + words[3]
+        
+
+
+    }
+    
+
+}
