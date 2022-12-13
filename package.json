@@ -11,7 +11,7 @@
     "cookie-parser": "latest",
     "debug": "latest",
     "ejs": "latest",
-    "express": "~4.16.1",
+    "express": "~4.17.3",
     "http-errors": "latest",
     "morgan": "~1.9.1",
     "stockfish": "^11.0.0"
